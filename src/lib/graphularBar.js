@@ -65,11 +65,21 @@
     this.addRectangle(bar, barProps);
     this.addTransition('rect', this.config.transition || 0, {'width': 140}, {'width': function(d) { return hbSettings.xScale(d.value); }});
     if (this.config.showDetails) {
+      var textOut;
+      if (this.config.showDetails) {
+        if (this.config.showDetails === 'value') {
+          textOut = function(d) { return d.value + ""; }
+        } else if (this.config.showDetails === 'label') {
+          textOut = function(d) { return d.label + ""; }
+        } else {
+          textOut = function(d) { return d.label + " ("+d.value+")"; }
+        }
+      }
       var textProps = {
         fill: '#fff',
         y: function(d,i) { return i * hbSettings.combinedBar + 15; },
         x: 15,
-        text: function(d) { return d.value + ""; }
+        text: textOut
       };
       this.addText(bar, textProps);
     }

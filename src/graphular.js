@@ -186,6 +186,15 @@ if (!d3) { throw 'd3 library not found.'; }
     return this.getHeight(this.core);
   };
 
+  /**
+   * Sets the chart scale method, chart domain and value range. The scale type
+   * defaultsto linear if it is not supplied.
+   *
+   * @param  string scale  Type of scaling method to use
+   * @param  array  domain Chart domain supplied as a '[min, max]' array
+   * @param  array  range  Chart range supplied as a '[min, max]' array
+   * @return object        A d3 scale object
+   */
   graphularObject.setScale = function (scale, domain, range) {
     if (!angular.isString(scale)) {
       range = domain; domain = scale; scale = 'linear';
@@ -248,6 +257,16 @@ if (!d3) { throw 'd3 library not found.'; }
         break;
     }
   };
+
+  /**
+   * Sets or resets the chart domain. If the first supplied value is an array
+   * and the second value is an object, the method assumes the first value as
+   * the domain and the second value as the scale object.
+   *
+   * @param integer min      The minimum value in the domain
+   * @param integer max      The maximum value in the domain
+   * @param object  scaleObj The d3 scale object to work with
+   */
   graphularObject.setDomain = function (min, max, scaleObj) {
     if (!scaleObj && angular.isObject(max) && angular.isArray(min)) {
       scaleObj = max;
@@ -256,6 +275,16 @@ if (!d3) { throw 'd3 library not found.'; }
       scaleObj.domain([min, max]);
     }
   };
+
+  /**
+   * Sets or resets the chart range. If the first supplied value is an array and
+   * the second value is an object, the method assumes the first value as the
+   * range and the second value as the scale object.
+   *
+   * @param integer min      The minimum value in the range
+   * @param integer max      The maximum value in the range
+   * @param object  scaleObj The d3 scale object to work with
+   */
   graphularObject.setRange = function (min, max, scaleObj) {
     if (!scaleObj && angular.isObject(max) && angular.isArray(min)) {
       scaleObj = max;
@@ -264,6 +293,7 @@ if (!d3) { throw 'd3 library not found.'; }
       scaleObj.range([min, max]);
     }
   };
+
   graphularObject.addTransition = function (nodes, duration, start, end) {
     var n = this.svg.selectAll(nodes);
     n.attr(start).transition().duration(duration).attr(end);

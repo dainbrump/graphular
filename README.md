@@ -132,3 +132,150 @@ configuration of the associated graphular chart. These options may be similar
 or completely different and are dependent on the library being used. For a
 complete list of options for each chart, refer to the developer notes for that
 library.
+
+Shared Methods
+--------------
+
+### init (element, defaults)
+
+> Initializes the graphular object, identifies the container DOM element and
+> creates an svg object for d3 to work with. It then checks to see if the
+> graphular object has a redecorate method. If so, it executes it. This
+> method allows the graphular object to redefine some of the following core
+> methods to better work with the particular object type.
+
+`element` - a jQuery or Angular element reference to the d3 container used for
+this d3 document instance.
+
+`defaults` - A JSON of default configuration settings for the current d3
+document instance and type.
+
+### loadOptions (opt)
+
+> Processes additional configuration settings for the current d3 document
+> instance. Filters out Angular and jQuery scope references (${something} and
+> $${something_else}). It then applies these key / value pairs to the current
+> instance configuration.
+
+`opt` - JSON collection of key / value pair settings for the current graphular
+instance.
+
+### svgReset (elements)
+
+> SVG container reset method. Removes specified elements from the SVG node.
+> Defaults to '*' or all SVG child nodes.
+
+`elements` - A valid DOM selector pattern.
+
+### loadData (data)
+
+> Validates and populates the graphular instances data.
+
+`data` - An array of values or key/value pairs to be used by d3 for rendering
+the chart.
+
+### validateProps (obj, reqs)
+
+> Simple validation. It does not verify format, only presence of the required
+> properties.
+
+`obj` - Object to validate.
+
+`reqs` - String or array of strings identifying keys that must exist in the
+object.
+
+Returns `true` if all properties exist.
+
+### filterProps (obj, reqs, opts)
+
+> Iterates through the object and returns an object that contains only key /
+> value pairs where the keys are in the required or optional list. All other
+> key value pairs are ignored.
+
+`obj` - Object to filter.
+
+`reqs` - String or array of strings for required keys.
+
+`opts` - String or array of strings for optional keys.
+
+Returns a filtered object with only required and optional values.
+
+### validateAndFilterProps (obj, reqs, opts)
+
+> Performs a 'validateProps' and 'filterProps' all in one action.
+
+`obj` - Object to validate and filter.
+
+`reqs` - String or array of strings for required keys.
+
+`opts` - String or array of strings for optional keys.
+
+Returns a filtered object with only required and optional values.
+
+### getWidth (element)
+
+> Returns the calculated width of the supplied element.
+
+`element` - jQuery / Angular element to measure.
+
+Returns the calculated width in pixels.
+
+### getHeight (element)
+
+> Returns the calculated height of the supplied element.
+
+`element` - jQuery / Angular element to measure.
+
+Returns the calculated height in pixels.
+
+### coreWidth ()
+
+> Returns the calculated width of the graphular container element.
+
+Returns the calculated width of the primary container in pixels.
+
+### coreHeight ()
+
+> Returns the calculated height of the graphular container element.
+
+Returns the calculated height of the primary container in pixels.
+
+### setScale (scale, domain, range)
+
+> Sets the chart scale method, chart domain and value range. The scale type
+> defaults to linear if it is not supplied.
+
+`scale` - Type of scaling method to use. Options are 'linear', 'sqrt', 'pow',
+'log', 'quantize', 'threshold', 'quantile', 'identity', and 'ordinal'.
+
+`domain` - Chart domain supplied as a '[min, max]' array.
+
+`range` -  Chart range supplied as a '[min, max]' array.
+
+Returns a d3 scale object.
+
+### setDomain (min, max, scaleObj)
+
+> Sets or resets the chart domain. If the first supplied value is an array
+> and the second value is an object, the method assumes the first value as
+> the domain and the second value as the scale object.
+
+`min` - The minimum value in the domain.
+
+`max` - The maximum value in the domain.
+
+`scaleObj` - The d3 scale object to work with.
+
+### setRange (min, max, scaleObj)
+
+> Sets or resets the chart range. If the first supplied value is an array and
+> the second value is an object, the method assumes the first value as the
+> range and the second value as the scale object.
+
+`min` - The minimum value in the range.
+
+`max` - The maximum value in the range.
+
+`scaleObj` - The d3 scale object to work with.
+
+### **More shared methods to come**
