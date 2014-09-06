@@ -86,3 +86,49 @@ directive and bind our data:
   <div chart type="bar" data="data"></div>
 </div>
 ```
+
+Details
+-------
+
+The graphular directive has only three bound attributes to deal with:
+
+### 1. 'type'
+
+> A text string that identifies the type of graphular chart to render.
+
+As shown in our example above, the **type** attribute references the object
+defined in graphularBar.js. The directive converts the value in **type** to a
+camel-case variant, appends this new string to 'graphular' to create a class
+name of 'graphularBar'. It then looks for an object named 'graphularBar' to be
+registered with the window object. If it finds one, it returns a new instance of
+that object. If we look inside graphularBar.js we see that the last thing done
+is:
+
+```javascript
+window.graphularBar = graphularBar;
+```
+
+If we created our own chart called AwesomeBar, at the end of our library we
+simply need to add `window.graphularAwesomeBar = {the object name we created}`.
+Then we can add a **type** attribute of 'awesomeBar' or 'AwesomeBar' to our
+directive and the new chart library will be used to render our AwesomeBar. For
+more information on creating your own graphular libraries, look through the code
+in `src/lib/exampleObject.js`.
+
+### 2. 'data'
+
+> An array of values or key/value pairs representing the data to render.
+
+Data is always an array of numeric values or an array of key/numeric value pairs
+unless you have created a custom graphular library that accepts data in another
+format.
+
+### 3. 'options'
+
+> A key/value pair collection of chart configuration specific to the chart type.
+
+The options attribute is a key/value collection that overrides the default
+configuration of the associated graphular chart. These options may be similar
+or completely different and are dependent on the library being used. For a
+complete list of options for each chart, refer to the developer notes for that
+library.

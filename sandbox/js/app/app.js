@@ -2,9 +2,9 @@ var g = angular.module('graphularSandbox', ['graphular']);
 
 g.controller('sandbox', ['$scope', function ($scope) {
   $scope.data = [
-    {label:'Greg',  value:98},
-    {label:'Ari',   value:96},
-    {label:'Q',     value:75},
-    {label:'Loser', value:48}
+    {label:'A', value:98},
+    {label:'B', value:96},
+    {label:'C', value:75},
+    {label:'D', value:48}
   ];
 }]);
