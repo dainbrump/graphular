@@ -1,6 +1,6 @@
 'use strict';
 
-// First things first. Verify D3 presence and set our reference or barf.
+// First things first. Verify D3 presence and set our global reference or barf.
 var d3 = window.d3 || null;
 if (!d3) { throw 'd3 library not found.'; }
 

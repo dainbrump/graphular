@@ -46,3 +46,43 @@ wish to use. Next, inject the 'graphular' module into your app, add some code to
 your controllers to generate your data, and bind that data and any options to
 a 'chart' directive.
 
+Looking at our sandbox, we see:
+
+```html
+<script src="[PATH_TO_ANGULAR]/angular.min.js"></script>
+<script src="[PATH_TO_D3]/d3.min.js"></script>
+<script src="[PATH_TO_GRAPHULAR]/graphular.js"></script>
+<!-- Next we include our chart libraries -->
+<script src="[PATH_CHART_LIBRARIES]/graphularBar.js"></script>
+```
+Then in our AngularJS app, we inject the 'graphular' dependency:
+
+```javascript
+angular.module('MyAwesomeApp', ['graphular']);
+```
+
+In our controller, we set some scope variables, specifically a data variable:
+
+```javascript
+$scope.data = [
+  {label:'A', value:98},
+  {label:'B', value:96},
+  {label:'C', value:75},
+  {label:'D', value:48}
+];
+```
+
+Finally, inside a DOM element where we've bound our controller, we add the
+directive and bind our data:
+
+```html
+<!-- As a tag -->
+<div ng-controller="MyAwesomeController">
+  <chart type="bar" data="data"></chart>
+</div>
+
+<!-- As an attribute -->
+<div ng-controller="MyAwesomeController">
+  <div chart type="bar" data="data"></div>
+</div>
+```

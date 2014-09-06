@@ -20,15 +20,8 @@
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="#">Graphular Sandbox</a>
         </div>
-        <div class="navbar-collapse collapse"></div>
       </div>
     </div>
     <div class="container">
@@ -39,12 +32,12 @@
       </div>
     </div>
 
-    <!-- Include our dependencies -->
+    <!-- Include our core libraries -->
     <script src="js/vendor/angular/angular.min.js"></script>
     <script src="js/vendor/d3/d3.min.js"></script>
-    <script src="../src/lib/graphularBar.js"></script>
     <script src="../src/graphular.js"></script>
-
+    <!-- Include the graphular chart libraries we want to tinker with -->
+    <script src="../src/lib/graphularBar.js"></script>
     <!-- Kick the tires and light the fires -->
     <script src="js/app/app.js"></script>
   </body>
